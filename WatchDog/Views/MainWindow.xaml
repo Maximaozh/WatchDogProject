@@ -1,0 +1,65 @@
+﻿<Window x:Class="WatchDog.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchDog"
+        xmlns:converters="clr-namespace:WatchDog.Converters"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        Closing="Window_Closing"
+        Title="WatchDog" Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem x:Name="SaveMenuItem" Header="Сохранить" Click="SaveMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="ExitMenuItem" Header="Выход" Click="ExitMenuItem_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Настройка">
+                <MenuItem x:Name="BotApiMenuItem" Header="Телеграм-бот: API" Click="BotApiMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="ChatIdMenuItem" Header="Телеграм-бот: ID чата" Click="ChatIdMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="ConnectionStringMenuItem" Header="Строка подключения БД" Click="ConnectionStringMenuItem_Click"></MenuItem>
+                <MenuItem x:Name="FileSaveNameMenuItem" Header="Файл сохранения мониторов" Click="FileSaveNameMenuItem_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Дополнительно">
+                <MenuItem x:Name="AboutMenuItem" Header="О нас" Click="AboutMenuItem_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <StackPanel DockPanel.Dock="Left" MaxWidth="200pt" MinWidth="100pt">
+            <Label>Управление</Label>
+            <Button x:Name="RunAllButton"  HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="RunAllButton_Click">Запустить всё</Button>
+            <Button x:Name="StopAllButton"  HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="StopAllButton_Click">Остановить всё</Button>
+            <Separator DockPanel.Dock="Top"/>
+            <Label>Мониторы</Label>
+            <Button x:Name="AddButton" HorizontalAlignment="Stretch" DockPanel.Dock="Top" Click="AddButton_Click">Добавить</Button>
+            <Button x:Name="ChangeButton" HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="ChangeButton_Click">Изменить</Button>
+            <Separator DockPanel.Dock="Top"/>
+            <Button x:Name="DeleteButton" HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="DeleteButton_Click">Удалить</Button>
+            <Separator DockPanel.Dock="Top"/>
+            <Button x:Name="AccessTimeButton" HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="AccessTimeButton_Click">Время доступа</Button>
+            <Separator DockPanel.Dock="Top"/>
+            <Label>Отчёты</Label>
+            <Button x:Name="ReportButton" HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="ReportButton_Click">Последние записи</Button>
+            <Button x:Name="AccessTimeReportButton" HorizontalAlignment="Stretch"  DockPanel.Dock="Top" Click="AccessTimeReportButton_Click">Время доступа</Button>
+        </StackPanel>
+        <ScrollViewer>
+            <ListView x:Name="MonitorsListView" ItemsSource="{Binding Monitors}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel  Margin="0 0 15 0">
+                            <Separator/>
+                            <local:StatusMonitorController DataContext="{Binding}"/>
+                            <Separator/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>     
+    </DockPanel>
+</Window>

@@ -1,0 +1,23 @@
+﻿<Window x:Class="WatchDog.Views.AccessTimeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WatchDog.Views"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        mc:Ignorable="d"
+        Title="Время доступа" Height="300" Width="400">
+    <StackPanel Margin="10">
+        <Label x:Name="SiteAddressLabel" Content="Адрес сайта:" />
+        <TextBox x:Name="SiteAddressTextBox" HorizontalAlignment="Stretch" />
+
+        <Label Content="Дата начала отслеживания:" Margin="0,10,0,0" />
+        <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Stretch" />
+
+        <Label Content="Дата окончания отслеживания:" Margin="0,10,0,0" />
+        <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Stretch" />
+
+        <Button Content="Запуск" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" Click="OnStartButtonClick" />
+    </StackPanel>
+</Window>
